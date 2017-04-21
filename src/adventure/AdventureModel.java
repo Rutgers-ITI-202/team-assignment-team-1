@@ -117,8 +117,8 @@ public class AdventureModel {
 	public void takeCommands(){
 		// Takes initial command
 		Scanner sc = new Scanner(System.in);
-		System.out.println("What would you like to do?"+"\nComands to use:\"go south\", \"go north\", \"go west\", \"go east\""
-				+ "\n\"take..\", \"use...\"");
+		System.out.println("What would you like to do?"+"\nComands to use:\"go [direction]\", \"look\", \"take[thing]\", "
+				+ "\n\"drop [thing}\", \"use [thing]\"");
 		String command = sc.nextLine();
 		
 		// Takes first word and second word of command.
@@ -348,7 +348,7 @@ public class AdventureModel {
 			for(int i=0; i<player1.items.size(); i++){
 				if(player1.items.get(i).name.equalsIgnoreCase("Hint1") || player1.items.get(i).name.equalsIgnoreCase("Hint2") ||
 						player1.items.get(i).name.equalsIgnoreCase("Hint3") || player1.items.get(i).name.equalsIgnoreCase("Hint4")){
-					System.out.println(player1.items.get(i).desc+" Save it for later.");
+					System.out.println(player1.items.get(i).desc+". Save it for later.");
 					}
 			}
 			rooms.get(player1.location).items.remove(indexOfItemInRoom);
