@@ -29,12 +29,11 @@ public class AdventureModel {
 		for (int i = 0; i < 6; i++){
 			randomCode[i] = (int)(Math.random()*9);
 			randomCodeString = randomCodeString + randomCode[i];
-
 		}
 
-		System.out.println(randomCodeString);
-		firstHint="A hint to the exist!= " + radomCodeString.substring(0, 1);
-		System.out.println(firstHint);
+		firstHint="A hint to the exit: "+randomCodeString.substring(0, 2);
+		secondHint="A hint to the exit: "+randomCodeString.substring(2, 4);
+		thirdHint="A hint to the exit: "+randomCodeString.substring(4, 6);
 	}
 	
 	// Generates Rooms and connects each Room.
@@ -86,12 +85,20 @@ public class AdventureModel {
 	rooms.get((int)(Math.random()*9)).items.add(hint2);
 	Item hint3 = new Item("Hint3", "A hint to the exit!: ");
 	rooms.get(9).items.add(hint3);
-	Item trap = new Item("Hint4", "Whoa, this one looks a little different.");
+	
+	String fakeHint="A hint to the exit: ";
+	int[] fakeCode=new int[2];
+	for(int j=0; j<2; j++){
+		fakeCode[j] = (int)(Math.random()*9);
+		fakeHint = fakeHint + fakeCode[j];
+	}
+	Item trap = new Item("Hint4", fakeHint);
 	rooms.get((int)(Math.random()*9)).items.add(trap);
 	}
 	
 	// Method to print out the map of the layout of the area.
 	public void printLayout(){
+		System.out.println("Game map: ");
 		System.out.println("                [ H ]");
 		System.out.println("                  |  ");
 		System.out.println("[ 9 ] - [ 1 ] - [ 3 ]");
@@ -102,7 +109,7 @@ public class AdventureModel {
 		System.out.println();
 		
 		String roomName = rooms.get(player1.location).name;
-		System.out.println(player1.location+1);
+		//System.out.println(player1.location+1);
 		System.out.println("Player is in the " + roomName + ".");
 	}
 
@@ -110,7 +117,8 @@ public class AdventureModel {
 	public void takeCommands(){
 		// Takes initial command
 		Scanner sc = new Scanner(System.in);
-		System.out.println("What would you like to do?");
+		System.out.println("What would you like to do?"+"\nComands to use:\"go south\", \"go north\", \"go west\", \"go east\""
+				+ "\n\"take..\", \"use...\"");
 		String command = sc.nextLine();
 		
 		// Takes first word and second word of command.
@@ -337,6 +345,12 @@ public class AdventureModel {
 			
 			player1.items.add(rooms.get(player1.location).items.get(indexOfItemInRoom));
 			System.out.println("The item has been added to the player's inventory.");
+			for(int i=0; i<player1.items.size(); i++){
+				if(player1.items.get(i).name.equalsIgnoreCase("Hint1") || player1.items.get(i).name.equalsIgnoreCase("Hint2") ||
+						player1.items.get(i).name.equalsIgnoreCase("Hint3") || player1.items.get(i).name.equalsIgnoreCase("Hint4")){
+					System.out.println(player1.items.get(i).desc+" Save it for later.");
+					}
+			}
 			rooms.get(player1.location).items.remove(indexOfItemInRoom);
 			System.out.println("The item has been removed from the room.");
 						
@@ -376,9 +390,15 @@ public class AdventureModel {
 				}
 			}
 			
-			else if (numOfHints < 4 || hint){
-				System.out.println("*Insert hint for 6 digit code*");
-				System.out.println("Use of hints has not been implemented yet. The programmer is very tired.");
+			else if (secondWord.equalsIgnoreCase("Hint1") || secondWord.equalsIgnoreCase("Hint2") ||
+					secondWord.equalsIgnoreCase("Hint3") || secondWord.equalsIgnoreCase("Hint4")){
+				System.out.println("Enter the number from the hint: ");
+				String hintCode= sc.nextLine();
+				if(randomCodeString.contains(hintCode)){
+							System.out.println("You just found a section of the secret code need to win this game."+
+				"\nNow lets just hope that you enter it in the right sequence.");
+				}
+				
 			}
 			else{
 				System.out.println("That item can't be used");
