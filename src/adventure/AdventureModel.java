@@ -99,13 +99,13 @@ public class AdventureModel {
 	// Method to print out the map of the layout of the area.
 	public void printLayout(){
 		System.out.println("Game map: ");
-		System.out.println("                [ H ]");
-		System.out.println("                  |  ");
-		System.out.println("[ 9 ] - [ 1 ] - [ 3 ]");
-		System.out.println("  |       | ");
-		System.out.println("[ 4 ]   [ 6 ] - [ 5 ]");
-		System.out.println("  |       |       |");
-		System.out.println("[ 7 ]   [ E ] - [ 2 ] - [ 8 ]");
+		System.out.println("                            [Hidden Closet]");
+		System.out.println("                                    |        ");
+		System.out.println(" [Kitchen] - [Dining Room] - [Master Bedroom]");
+		System.out.println("     |             | ");
+		System.out.println("[Guest Room]    [Foyer] - [Living Room]");
+		System.out.println("     |             |         |");
+		System.out.println("[Bathroom]       [Exit] - [Garage] - [Laundry Room]");
 		System.out.println();
 		
 		String roomName = rooms.get(player1.location).name;
