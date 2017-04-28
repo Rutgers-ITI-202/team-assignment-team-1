@@ -77,7 +77,7 @@ public class AdventureModel {
 	Item flashLight = new Item("flashLight", "A flashlight, but it seems to be dead.");
 	int num = (int)(Math.random()*9);
 	rooms.get(num).items.add(flashLight);
-	System.out.println("THE FLASHLIGHT IS IN " + (num+1));
+	//System.out.println("THE FLASHLIGHT IS IN " + (num+1));
 	
 	Item hint1 = new Item("Hint1", "A hint to the exit!: ");
 	rooms.get((int)(Math.random()*9)).items.add(hint1);
